@@ -18,8 +18,7 @@ import { ProductSerice } from './products/product.service';
   <router-outlet></router-outlet>
  </div>
  </div>
-  `,
-  providers: [ProductSerice]
+  `
 })
 export class AppComponent {
   pageTitle: string = "Acme Prodcuts Management";

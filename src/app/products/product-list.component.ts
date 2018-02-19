@@ -20,13 +20,13 @@ export class ProductListComponent implements OnInit {
     set listFilter(value: string){
         this._listFilter = value;
         this.filerProducts = this.listFilter ? this.preformFilter(this.listFilter) : this.products;
+        console.log(this.filerProducts);
     }
 
     filerProducts : IProduct[];
     products: IProduct[] = [];
 
     constructor(private _productService: ProductSerice) {
-        this.listFilter = 'cart'
     }
 
     onRaitingClicked(message: string): void {
@@ -38,16 +38,19 @@ export class ProductListComponent implements OnInit {
     }
 
     preformFilter(filterBy: string) : IProduct[] {
+        console.log('#1' + filterBy);
         filterBy = filterBy.toLocaleLowerCase();
         return this.products.filter((product: IProduct) => 
             product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
     }
 
     ngOnInit(): void {
+        console.log('#2');
         this._productService.getProducts()
         .subscribe(products =>{ 
             this.products = products,
             this.filerProducts = this.products;
+            this.listFilter = 'cart'
         },
         error => this.errorMessage = <any>error);
     }
